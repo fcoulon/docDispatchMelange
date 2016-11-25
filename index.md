@@ -8,7 +8,7 @@ Simple Language
 
 1. Definition
 
-<p align="center"><img src="/img/l1.svg" width="500"></p>
+<p align="center"><img src="img/l1.svg" width="500"></p>
 
 Lets consider the language L1 with metaclasses A, C and B inheriting A.
 The semantic of L1 is composed of the following aspects:
