@@ -107,7 +107,7 @@ Composed Language
 
 1. Definition
 
-<p align="center"><img src="/img/l2.png" width="500"></p>
+<p align="center"><img src="img/l2.png" width="500"></p>
 
 Now lets consider a language L2 inheriting L1 without new syntax but adding a new aspect Asp4 on B and redefining foo():
 
