@@ -39,6 +39,7 @@ class Asp3 inherits Asp1 {
 
 
 We have this transfo defined on L1:
+
 ~~~java
 PrinterTransfo(Resource model_l1) {
 	val A a = findA(model_l1)
@@ -53,6 +54,7 @@ PrinterTransfo(Resource model_l1) {
 ~~~
 
 Calling PrinterTransfo will print:
+
 ~~~java
 Asp1.foo
 Asp3.foo
@@ -64,13 +66,16 @@ Asp3.foo
 
 The basic purpose of K3 is to transform an Aspect to a Java class exposing static methods in order the reuse it as Xtend's extension method.
 So from the body of 'PrinterTransfo' :
+
 ~~~java
 	a.foo()
 	b.foo()
 	c.bar(a)
 	c.bar(b)
 ~~~
+
 Xtend generates the Java lines :
+
 ~~~java
 Asp1.foo(a)
 Asp3.foo(b)
@@ -79,10 +84,13 @@ Asp2.bar(c,b)
 ~~~
 
 And if we look inside Asp2.bar(A) :
+
 ~~~java
 		a.foo()
 ~~~
+
 Xtend will generates :
+
 ~~~java
 	Asp1.foo(a)
 ~~~
@@ -92,6 +100,7 @@ Asp2.bar(c,b) calling Asp1.foo(b)
 
 As we want to call Asp3.foo(b) at the end, Asp1.foo(A) has to dispatch to the right aspect's method depending if the argument is typed A or a subtype of A.
 To do so the K3 generated body of Asp1.foo(A _self) looks like:
+
 ~~~java
 	if(_self instanceof B) Asp3.foo((B)_self)
 	else if(_self instanceof A) Asp1.privk3_foo(_self)
@@ -121,6 +130,7 @@ class Asp4 inherits Asp3 {
 ~~~
 
 We have this transfo defined on L2:
+
 ~~~java
 PrinterTransfo2(Resouce model_l2) {
 	val A a = findA(model_l2)
@@ -135,6 +145,7 @@ PrinterTransfo2(Resouce model_l2) {
 ~~~
 
 Calling PrinterTransfo2 will print:
+
 ~~~java
 Asp1.foo
 Asp4.foo
@@ -145,13 +156,16 @@ Asp4.foo
 2. Implementation
 
 From the body of 'PrinterTransfo2' :
+
 ~~~java
 	a.foo()
 	b.foo()
 	c.bar(a)
 	c.bar(b)
 ~~~
+
 Xtend generates the Java lines :
+
 ~~~java
 Asp1.foo(a)
 Asp4.foo(b)
@@ -164,6 +178,7 @@ Asp2.bar(b) calling Asp1.foo(b)
 
 But now we want that Asp1.foo(A) dispatchs to Asp4.foo(B). So Melange will recompute the previously K3 generated dispatch to take in account the introduced aspect 'Asp4'.
 The result of this generation for Asp1.foo(A _self) looks like:
+
 ~~~java
 	if(_self instanceof B) Asp4.foo((B)_self)
 	else if(_self instanceof A) Asp1.privk3_foo(_self)
