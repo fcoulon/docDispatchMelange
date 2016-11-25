@@ -8,7 +8,7 @@ Simple Language
 
 1. Definition
 
-<p align="center"><img src="img/l1.svg" width="500"></p>
+<p align="center"><img src="img/l1.png" width="500"></p>
 
 Lets consider the language L1 with metaclasses A, C and B inheriting A.
 The semantic of L1 is composed of the following aspects:
@@ -107,7 +107,7 @@ Composed Language
 
 1. Definition
 
-<p align="center"><img src="/img/l2.svg" width="500"></p>
+<p align="center"><img src="/img/l2.png" width="500"></p>
 
 Now lets consider a language L2 inheriting L1 without new syntax but adding a new aspect Asp4 on B and redefining foo():
 
